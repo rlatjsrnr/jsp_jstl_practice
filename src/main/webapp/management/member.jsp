@@ -8,7 +8,7 @@
 <jsp:useBean id="cri" class="util.Criteria" />
 
 <s:query var="rs" dataSource="java/MySQLDB">
-	SELECT count(*) as c FROM digital_member
+	SELECT count(*) as c FROM digital_member WHERE u_id != 'admin' AND u_join = 'Y'
 </s:query>
 
 ${pm.setTotalCount(rs.rows[0].c)}

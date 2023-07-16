@@ -10,7 +10,7 @@ public class Criteria {
 	private int perPageNum;
 	
 	public Criteria() {
-		this(1,5);
+		this(1,2);
 	}
 	
 	public Criteria(int page, int perPageNum) {
