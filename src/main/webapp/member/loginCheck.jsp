@@ -8,6 +8,7 @@
 	 로그인 요청 처리 
 	 로그인 성공한 회원의 정보를 member 를 키값으로 저장
 -->
+<jsp:useBean id="mkCookie" class="util.MakeCookie" />
 <c:catch var="r">	
 	<s:query var="rs" dataSource="java/MySQLDB">
 		SELECT * FROM digital_member WHERE u_id=? AND u_pass=? AND u_join='Y'
@@ -20,12 +21,12 @@
 			
 			<c:if test="${!empty param.login}">
 				<%
-					String id = request.getParameter("u_id");
-					Cookie cookie = new Cookie("rememberMe", id);
-					cookie.setMaxAge(60*60*24);
-					cookie.setPath("/");
-					response.addCookie(cookie);
-				%>
+				 	Cookie cookie = new Cookie("rememberMe", "");
+				 	cookie.setMaxAge(60*60*24);
+				 	cookie.setPath("/");
+				 	response.addCookie(cookie);
+				 %>
+				<%-- ${mkCookie.makeCookie(response, "rememberMe", param.u_id, 60*60*24, "/")} --%>
 			</c:if>			
 			<script>
 				alert('로그인 성공');

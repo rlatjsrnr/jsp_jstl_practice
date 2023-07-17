@@ -33,8 +33,7 @@ ${pm.setCri(cri)}
 	
 	<c:choose>
 		<c:when test="${rs.rowCount > 0}">
-			<c:forEach var="m" items="${rs.rows}">
-				<c:if test="${m.u_join == 'Y'}">
+			<c:forEach var="m" items="${rs.rows}">				
 					<tr>
 						<td>${m.u_num}</td>
 						<td>${m.u_id}</td>
@@ -43,26 +42,29 @@ ${pm.setCri(cri)}
 							<a href="<c:url value='/management/memberUpdate.jsp'/>?u_num=${m.u_num}">수정</a> |
 							<a href="<c:url value='/management/memberDelete.jsp'/>?u_num=${m.u_num}">삭제</a>
 						</td>
-					</tr>
-				</c:if>
+					</tr>				
 			</c:forEach>
-		</c:when>
+			<c:if test="${!empty pm}">	
+				<tr>
+					<td colspan="4">
+					<c:if test="${pm.prev}">			
+						<a href="<c:url value='/management/member.jsp'/>?selectPage=${pm.startPage-1}">[이전]</a>
+					</c:if>
+					<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
+						<a href="<c:url value='/management/member.jsp'/>?selectPage=${i}">[${i}]</a>
+					</c:forEach>
+					<c:if test="${pm.next}">
+						<a href="<c:url value='/management/member.jsp'/>?selectPage=${pm.endPage + 1}">[다음]</a>
+					</c:if>
+				</td>
+			</tr>
+			</c:if>
+		</c:when>		
+
+		<c:otherwise>
+			등록된 회원 없음
+		</c:otherwise>
 	</c:choose>
-<c:if test="${!empty pm}">	
-	<tr>
-		<td colspan="4">
-			<c:if test="${pm.prev}">			
-				<a href="<c:url value='/management/member.jsp'/>?selectPage=${pm.startPage-1}">[이전]</a>
-			</c:if>
-			<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}">
-				<a href="<c:url value='/management/member.jsp'/>?selectPage=${i}">[${i}]</a>
-			</c:forEach>
-			<c:if test="${pm.next}">
-				<a href="<c:url value='/management/member.jsp'/>?selectPage=${pm.endPage + 1}">[다음]</a>
-			</c:if>
-		</td>
-	</tr>
-</c:if>
 	<!-- 등록된 회원 정보가 없을 시 출력 -->	
 </table>
 

@@ -25,4 +25,3 @@ SELECT * FROM digital_member
 WHERE u_id != 'admin' AND u_join = 'Y' 
 ORDER BY u_num DESC
 
-SELECT * FROM digital_member WHERE u_id != 'admin' AND u_join = 'Y' ORDER BY u_num DESC limit 0, 2;

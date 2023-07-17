@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <!-- joinCheck.jsp -->
 <!-- 회원가입 처리 -->
+
 <c:catch var="r">
 	<s:query var="rs" dataSource="java/MySQLDB">
 		SELECT * FROM digital_member WHERE u_id='${param.u_id}'
